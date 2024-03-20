@@ -9,6 +9,7 @@ import Leaderboard from "./Components/Leaderboard";
 import FightPage from "./Components/FightPage";
 import AboutUs from "./Components/AboutUs";
 import Footer from "./Components/Footer";
+import Error from "./Components/Error";
 
 function App() {
   const [count, setCount] = useState(0);
