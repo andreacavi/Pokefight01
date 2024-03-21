@@ -1,0 +1,73 @@
+.main_pokedex_wrapper_container {
+  background: linear-gradient(
+    180deg,
+    rgba(254, 127, 0, 1) 0%,
+    rgba(236, 225, 81, 1) 100%
+  );
+  padding: 30px 30px;
+}
+
+.pokedex_container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.allcardscontainer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20rem;
+  row-gap: 5rem;
+}
+
+.card_container {
+  margin: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  width: 200px;
+  height: 150px;
+  transform-style: preserve-3d;
+  position: relative;
+  transition: all 1000ms;
+  background-color: white;
+}
+
+.pokemon_pic {
+  margin-top: -80px;
+  margin-left: 30px;
+  z-index: 1;
+  position: relative;
+}
+
+.card_container:hover {
+  transform: rotateY(180deg);
+  background-color: white;
+}
+
+.card_front,
+.card_back {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.card_back {
+  transform: rotateY(180deg);
+}

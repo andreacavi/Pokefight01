@@ -1,59 +1,28 @@
 import { useContext } from "react";
 import { PokemonAPIContext } from "../Context/PokemonAPIContext";
+import styles from "../Styles/Pokedex.module.css";
 
 export default function Pokedex() {
-
   const { allPokemons, loading } = useContext(PokemonAPIContext);
   return (
-    <>
+    <div className={styles.main_pokedex_wrapper_container}>
       {loading ? ( // Check if loading state is true
-        <div
-          style={{
-            height: "100vh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-          }}
-        >
+        <div className={styles.pokedex_container}>
           <img src="Loading.gif" />
           <h1 style={{ marginTop: "2rem" }}>Loading...</h1>
         </div>
       ) : (
-        <div
-          className="AllCardsContainer"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
+        <div className={styles.allcardscontainer}>
           {allPokemons.map((pokemon) => (
-            <div
-              className="CardContainer"
-              style={{
-                margin: "1rem",
-                display: "flex",
-                flexWrap: "wrap",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "1rem",
-                border: "1px solid black",
-                borderRadius: "10px",
-                boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)}",
-                width: "200px",
-              }}
-              key={pokemon.id}
-            >
+            <div className={styles.card_container} key={pokemon.id}>
               <img
-                style={{ width: "100px", height: "100px" }}
-                className="PokemonImg"
+                style={{ width: "150px", height: "150px" }}
+                className={styles.pokemon_pic}
                 src={pokemon.url}
                 alt={pokemon.name.english}
               />
+              <div className={styles.card_back}>BACK</div>
+              <div className={styles.card_front}></div>
               <h3 className="PokemonName">{pokemon.name.english}</h3>
               <div className="PokemonTypes">
                 {pokemon.type.map((type) => (
@@ -66,6 +35,6 @@ export default function Pokedex() {
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 }
