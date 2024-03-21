@@ -5,6 +5,11 @@ import styles from "../Styles/Pokedex.module.css";
 export default function Pokedex() {
   const { allPokemons, loading } = useContext(PokemonAPIContext);
   const [selectedType, setSelectedType] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); // New state for search term
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase()); // Search should be case-insensitive
+  };
 
   const handleTypeChange = (type) => {
     setSelectedType(type === "" ? "" : type);
@@ -12,10 +17,16 @@ export default function Pokedex() {
 
   const filteredPokemons =
     selectedType === ""
-      ? allPokemons
-      : allPokemons.filter((pokemon) => {
-          return pokemon.type.some((type) => type === selectedType);
-        });
+      ? allPokemons.filter((pokemon) =>
+          pokemon.name.english.toLowerCase().includes(searchTerm)
+        ) // Search all Pokemons by name
+      : allPokemons
+          .filter((pokemon) =>
+            pokemon.type.some((type) => type === selectedType)
+          )
+          .filter((pokemon) =>
+            pokemon.name.english.toLowerCase().includes(searchTerm)
+          ); // Search filtered Pokemons by name
 
   const buttonTypes = [
     "Bug",
@@ -50,8 +61,22 @@ export default function Pokedex() {
     }
   };
 
+  const getCardColorBasedOnPokemonType = (pokemon) => {
+    return getColorBasedOnType(pokemon.type[0]); // Use the first type for card background
+  };
+
   return (
     <div className={styles.main_pokedex_wrapper_container}>
+      <div className={styles.search_bar_container}>
+        <input
+          type="text"
+          placeholder="Search Pokémon..."
+          className={styles.search_bar_pokedex}
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+        <img src="Pokeball.png" />
+      </div>
       <div className={styles.container_button_all_pokemons}>
         <button
           key=""
@@ -89,7 +114,12 @@ export default function Pokedex() {
       ) : (
         <div className={styles.allcardscontainer}>
           {filteredPokemons.map((pokemon) => (
-            <div className={styles.card_container} key={pokemon.id}>
+            <div
+              className={`${
+                styles.card_container
+              } ${getCardColorBasedOnPokemonType(pokemon)}`}
+              key={pokemon.id}
+            >
               <img
                 style={{ width: "150px", height: "150px" }}
                 className={styles.pokemon_pic}
