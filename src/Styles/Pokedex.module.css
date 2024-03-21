@@ -21,8 +21,9 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin-top: 20rem;
-  row-gap: 5rem;
+  margin-top: 15rem;
+  row-gap: 15rem;
+  column-gap: 5rem;
 }
 
 .card_container {
@@ -45,8 +46,7 @@
 }
 
 .pokemon_pic {
-  margin-top: -80px;
-  margin-left: 30px;
+  margin: -200px 0 20px 30px;
   z-index: 1;
   position: relative;
 }
@@ -68,6 +68,61 @@
   backface-visibility: hidden;
 }
 
+.card_front {
+  font-size: 2rem;
+}
 .card_back {
   transform: rotateY(180deg);
+}
+
+.filter_buttons_container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.container_button_all_pokemons {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  border-radius: 10px;
+  padding: 0.5rem;
+  color: white;
+  font-size: 2rem;
+}
+
+.active_button_all {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 1) 0%,
+    rgba(255, 154, 0, 1) 10%,
+    rgba(208, 222, 33, 1) 20%,
+    rgba(79, 220, 74, 1) 30%,
+    rgba(63, 218, 216, 1) 40%,
+    rgba(47, 201, 226, 1) 50%,
+    rgba(28, 127, 238, 1) 60%,
+    rgba(95, 21, 242, 1) 70%,
+    rgba(186, 12, 248, 1) 80%,
+    rgba(251, 7, 217, 1) 90%,
+    rgba(255, 0, 0, 1) 100%
+  );
+}
+
+.filter_button_all {
+  background-color: white;
+  color: black;
+}
+.button_color_bug {
+  background-color: greenyellow;
+}
+
+.button_color_grass {
+  background-color: green;
+}
+
+.button_color_poison {
+  background-color: violet;
 }
