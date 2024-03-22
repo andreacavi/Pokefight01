@@ -26,9 +26,18 @@ export default function Pokedex() {
               <h3 className="PokemonName">{pokemon.name.english}</h3>
               <div className="PokemonTypes">
                 {pokemon.type.map((type) => (
-                  <p key={type} className="PokemonType">
-                    {type}
-                  </p>
+                  <>
+                    {/* <p key={type} className="PokemonType">
+                      {type}
+                    </p> */}
+                    <img
+                      style={{
+                        height: "3.5rem",
+                        width: "auto",
+                      }}
+                      src={`/types/${type}.png`}
+                    />{" "}
+                  </>
                 ))}
               </div>
             </div>

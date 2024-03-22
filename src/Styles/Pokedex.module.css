@@ -71,3 +71,8 @@
 .card_back {
   transform: rotateY(180deg);
 }
+
+.typePngs {
+  height: 15px;
+  width: auto;
+}
