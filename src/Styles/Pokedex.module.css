@@ -86,14 +86,14 @@
   justify-content: center;
 }
 
-button {
+/* button {
   border-radius: 10px;
   border-color: white;
   padding: 0.5rem;
   color: white;
   font-size: 2rem;
   cursor: pointer;
-}
+} */
 
 .active_button_all {
   background: linear-gradient(
