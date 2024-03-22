@@ -148,16 +148,27 @@ export default function Pokedex() {
               } ${getCardColorBasedOnPokemonType(pokemon)}`}
               key={pokemon.id}
             >
-              <Link to={`/pokedex/${pokemon.id}`}>
-                <img
-                  style={{ width: "150px", height: "150px" }}
-                  className={styles.pokemon_pic}
-                  src={pokemon.url}
-                  alt={pokemon.name.english}
-                />
-              </Link>
-              <div className={styles.card_back}>BACK</div>
+              <div className={styles.card_back}>
+                <p>{pokemon.name.english}</p>
+                <Link to={`/pokedex/${pokemon.id}`}>
+                  <img
+                    style={{ width: "150px", height: "150px" }}
+                    className={styles.pokemon_pic}
+                    src={pokemon.url}
+                    alt={pokemon.name.english}
+                  />
+                </Link>
+                BACK
+              </div>
               <div className={styles.card_front}>
+                <Link to={`/pokedex/${pokemon.id}`}>
+                  <img
+                    style={{ width: "150px", height: "150px" }}
+                    className={styles.pokemon_pic}
+                    src={pokemon.url}
+                    alt={pokemon.name.english}
+                  />
+                </Link>
                 <h3 className="PokemonName">{pokemon.name.english}</h3>
                 <div className="PokemonTypes">
                   {pokemon.type.map((type) => (
