@@ -61,9 +61,6 @@
   transform: rotateY(180deg);
 }
 
-.PokemonType {
-}
-
 .StatPs {
   display: flex;
   flex-wrap: wrap;
