@@ -62,6 +62,26 @@ export default function Pokedex() {
         return styles.button_color_water;
       case "Ground":
         return styles.button_color_ground;
+      case "Ghost":
+        return styles.button_color_ghost;
+      case "Dragon":
+        return styles.button_color_dragon;
+      case "Flying":
+        return styles.button_color_flying;
+      case "Fire":
+        return styles.button_color_fire;
+      case "Fighting":
+        return styles.button_color_fighting;
+      case "Rock":
+        return styles.button_color_rock;
+      case "Electric":
+        return styles.button_color_electric;
+      case "Fairy":
+        return styles.button_color_fairy;
+      case "Psychic":
+        return styles.button_color_psychic;
+      case "Ice":
+        return styles.button_color_ice;
       default:
         return styles.filter_button; // Default color for non-matching types
     }

@@ -145,6 +145,46 @@ button {
   background-color: #e3c77d;
 }
 
+.button_color_ghost {
+  background-color: #715b9b;
+}
+
+.button_color_dragon {
+  background-color: #7a4af3;
+}
+
+.button_color_flying {
+  background-color: #9374eb;
+}
+
+.button_color_fire {
+  background-color: #f07f2e;
+}
+
+.button_color_fighting {
+  background-color: #c23834;
+}
+
+.button_color_rock {
+  background-color: #b7a039;
+}
+
+.button_color_electric {
+  background-color: #f7d64a;
+}
+
+.button_color_fairy {
+  background-color: #ef98ab;
+}
+
+.button_color_psychic {
+  background-color: #f96b94;
+}
+
+.button_color_ice {
+  background-color: #99d8d7;
+}
+
 .search_bar_container {
   display: flex;
   justify-content: center;
