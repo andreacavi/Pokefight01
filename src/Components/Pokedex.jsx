@@ -95,7 +95,45 @@ export default function Pokedex() {
 
   return (
     <div className={styles.main_pokedex_wrapper_container}>
+      <div className={styles.search_bar_container}>
+        <input
+          type="text"
+          placeholder="Search Pokémon..."
+          className={styles.search_bar_pokedex}
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+        <img src="Pokeball.png" />
+      </div>
+      <div className={styles.container_button_all_pokemons}>
+        <button
+          key=""
+          className={
+            selectedType === ""
+              ? styles.active_button_all
+              : styles.filter_button_all
+          }
+          onClick={() => handleTypeChange("")}
+        >
+          All Pokémon
+        </button>
+      </div>
 
+      <div className={styles.filter_buttons_container}>
+        {buttonTypes.map((type) => (
+          <button
+            key={type}
+            className={
+              selectedType === type
+                ? `${styles.active_button} ${getColorBasedOnType(type)}` // Concatenate styles
+                : styles.filter_button
+            }
+            onClick={() => handleTypeChange(type)}
+          >
+            {type}
+          </button>
+        ))}
+      </div>
       {loading ? (
         <div className={styles.pokedex_container}>
           <img src="Loading.gif" />
@@ -103,7 +141,6 @@ export default function Pokedex() {
         </div>
       ) : (
         <div className={styles.allcardscontainer}>
-
           {filteredPokemons.map((pokemon) => (
             <div
               className={`${
@@ -111,7 +148,7 @@ export default function Pokedex() {
               } ${getCardColorBasedOnPokemonType(pokemon)}`}
               key={pokemon.id}
             >
-              <Link to={`/pokemon/${pokemon.id}`}>
+              <Link to={`/pokedex/${pokemon.id}`}>
                 <img
                   style={{ width: "150px", height: "150px" }}
                   className={styles.pokemon_pic}
@@ -130,7 +167,7 @@ export default function Pokedex() {
                   ))}
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       )}
