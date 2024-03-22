@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { PokemonAPIContext } from "../Context/PokemonAPIContext";
 import styles from "../Styles/Pokedex.module.css";
+import { Link } from "react-router-dom";
 
 export default function Pokedex() {
   const { allPokemons, loading } = useContext(PokemonAPIContext);
@@ -146,12 +147,14 @@ export default function Pokedex() {
               } ${getCardColorBasedOnPokemonType(pokemon)}`}
               key={pokemon.id}
             >
-              <img
-                style={{ width: "150px", height: "150px" }}
-                className={styles.pokemon_pic}
-                src={pokemon.url}
-                alt={pokemon.name.english}
-              />
+              <Link to={`/pokemon/${pokemon.id}`}>
+                <img
+                  style={{ width: "150px", height: "150px" }}
+                  className={styles.pokemon_pic}
+                  src={pokemon.url}
+                  alt={pokemon.name.english}
+                />
+              </Link>
               <div className={styles.card_back}>BACK</div>
               <div className={styles.card_front}>
                 <h3 className="PokemonName">{pokemon.name.english}</h3>
