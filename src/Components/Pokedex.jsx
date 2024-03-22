@@ -1,71 +1,175 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PokemonAPIContext } from "../Context/PokemonAPIContext";
+import styles from "../Styles/Pokedex.module.css";
+import { Link } from "react-router-dom";
 
 export default function Pokedex() {
-
   const { allPokemons, loading } = useContext(PokemonAPIContext);
+  const [selectedType, setSelectedType] = useState("");
+  const [searchTerm, setSearchTerm] = useState(""); // New state for search term
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value.toLowerCase()); // Search should be case-insensitive
+  };
+
+  const handleTypeChange = (type) => {
+    setSelectedType(type === "" ? "" : type);
+  };
+
+  const filteredPokemons =
+    selectedType === ""
+      ? allPokemons.filter((pokemon) =>
+          pokemon.name.english.toLowerCase().includes(searchTerm)
+        ) // Search all Pokemons by name
+      : allPokemons
+          .filter((pokemon) =>
+            pokemon.type.some((type) => type === selectedType)
+          )
+          .filter((pokemon) =>
+            pokemon.name.english.toLowerCase().includes(searchTerm)
+          ); // Search filtered Pokemons by name
+
+  const buttonTypes = [
+    "Bug",
+    "Grass",
+    "Poison",
+    "Normal",
+    "Water",
+    "Ground",
+    "Ghost",
+    "Dragon",
+    "Flying",
+    "Fire",
+    "Fighting",
+    "Rock",
+    "Electric",
+    "Fairy",
+    "Psychic",
+    "Ice",
+  ];
+
+  const getColorBasedOnType = (type) => {
+    switch (type) {
+      case "Bug":
+        return styles.button_color_bug;
+      case "Grass":
+        return styles.button_color_grass;
+      // Add cases for other types with their corresponding color class names
+      case "Poison":
+        return styles.button_color_poison;
+      case "Normal":
+        return styles.button_color_normal;
+      case "Water":
+        return styles.button_color_water;
+      case "Ground":
+        return styles.button_color_ground;
+      case "Ghost":
+        return styles.button_color_ghost;
+      case "Dragon":
+        return styles.button_color_dragon;
+      case "Flying":
+        return styles.button_color_flying;
+      case "Fire":
+        return styles.button_color_fire;
+      case "Fighting":
+        return styles.button_color_fighting;
+      case "Rock":
+        return styles.button_color_rock;
+      case "Electric":
+        return styles.button_color_electric;
+      case "Fairy":
+        return styles.button_color_fairy;
+      case "Psychic":
+        return styles.button_color_psychic;
+      case "Ice":
+        return styles.button_color_ice;
+      default:
+        return styles.filter_button; // Default color for non-matching types
+    }
+  };
+
+  const getCardColorBasedOnPokemonType = (pokemon) => {
+    return getColorBasedOnType(pokemon.type[0]); // Use the first type for card background
+  };
+
   return (
-    <>
-      {loading ? ( // Check if loading state is true
-        <div
-          style={{
-            height: "100vh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-          }}
+    <div className={styles.main_pokedex_wrapper_container}>
+      <div className={styles.search_bar_container}>
+        <input
+          type="text"
+          placeholder="Search Pokémon..."
+          className={styles.search_bar_pokedex}
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+        <img src="Pokeball.png" />
+      </div>
+      <div className={styles.container_button_all_pokemons}>
+        <button
+          key=""
+          className={
+            selectedType === ""
+              ? styles.active_button_all
+              : styles.filter_button_all
+          }
+          onClick={() => handleTypeChange("")}
         >
+          All Pokémon
+        </button>
+      </div>
+
+      <div className={styles.filter_buttons_container}>
+        {buttonTypes.map((type) => (
+          <button
+            key={type}
+            className={
+              selectedType === type
+                ? `${styles.active_button} ${getColorBasedOnType(type)}` // Concatenate styles
+                : styles.filter_button
+            }
+            onClick={() => handleTypeChange(type)}
+          >
+            {type}
+          </button>
+        ))}
+      </div>
+      {loading ? (
+        <div className={styles.pokedex_container}>
           <img src="Loading.gif" />
           <h1 style={{ marginTop: "2rem" }}>Loading...</h1>
         </div>
       ) : (
-        <div
-          className="AllCardsContainer"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {allPokemons.map((pokemon) => (
+        <div className={styles.allcardscontainer}>
+          {filteredPokemons.map((pokemon) => (
             <div
-              className="CardContainer"
-              style={{
-                margin: "1rem",
-                display: "flex",
-                flexWrap: "wrap",
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: "1rem",
-                border: "1px solid black",
-                borderRadius: "10px",
-                boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)}",
-                width: "200px",
-              }}
+              className={`${
+                styles.card_container
+              } ${getCardColorBasedOnPokemonType(pokemon)}`}
               key={pokemon.id}
             >
-              <img
-                style={{ width: "100px", height: "100px" }}
-                className="PokemonImg"
-                src={pokemon.url}
-                alt={pokemon.name.english}
-              />
-              <h3 className="PokemonName">{pokemon.name.english}</h3>
-              <div className="PokemonTypes">
-                {pokemon.type.map((type) => (
-                  <p key={type} className="PokemonType">
-                    {type}
-                  </p>
-                ))}
+              <Link to={`/pokemon/${pokemon.id}`}>
+                <img
+                  style={{ width: "150px", height: "150px" }}
+                  className={styles.pokemon_pic}
+                  src={pokemon.url}
+                  alt={pokemon.name.english}
+                />
+              </Link>
+              <div className={styles.card_back}>BACK</div>
+              <div className={styles.card_front}>
+                <h3 className="PokemonName">{pokemon.name.english}</h3>
+                <div className="PokemonTypes">
+                  {pokemon.type.map((type) => (
+                    <p key={type} className="PokemonType">
+                      {type}
+                    </p>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 }

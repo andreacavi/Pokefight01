@@ -3,9 +3,14 @@ import { PokemonAPIContext } from "../Context/PokemonAPIContext";
 import styles from "../Styles/PokemonPage.module.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useParams } from "react-router-dom";
 
 export default function PokemonPage() {
-  const { allPokemons } = useContext(PokemonAPIContext);
+   const { id } = useParams();
+  const { allPokemons, loading } = useContext(PokemonAPIContext);
+  const pokemonId = parseInt(id, 10);
+  const onePokemon = allPokemons.find((el) => el.id === pokemonId);
+  console.log(onePokemon);
 
   const prevPokemon = () => {
     setCurrentPokemon((prev) => {
@@ -28,7 +33,14 @@ export default function PokemonPage() {
   };
 
   return (
-    <div className={styles.container}>
+    
+    
+    <>
+          {loading ? (
+        <div>Loading Pokemon...</div>
+      ) : onePokemon ? (
+        <>
+          <div className={styles.container}>
       <div className={styles.upperPart}>
         <a className={styles.arrow} href="/" onClick={prevPokemon}>
           <img src="/ArrowLeft.png" alt="Previous Pokemon" />
@@ -50,6 +62,10 @@ export default function PokemonPage() {
         </div>
         {/* This should be the white part with all the infos */}
       </div>
-    </div>
+        </>
+      ) : (
+        <div>Pokemon with ID {id} not found.</div>
+      )}
+   </>
   );
 }
