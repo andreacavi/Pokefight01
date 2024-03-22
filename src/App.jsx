@@ -21,6 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/pokedex" element={<Pokedex />} />
         <Route path="/pokedex/:id" element={<PokemonPage />} />
+
         <Route path="/leaderboard" element={<Leaderboard />} />
         <Route path="/pokefight" element={<FightPage />} />
         <Route path="/aboutUs" element={<AboutUs />} />

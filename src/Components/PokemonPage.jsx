@@ -1,80 +1,78 @@
-import { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import { PokemonAPIContext } from "../Context/PokemonAPIContext";
+import styles from "../Styles/PokemonPage.module.css";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useParams } from "react-router-dom";
 
 export default function PokemonPage() {
-  const [loading, setLoading] = useState(true); // Initialize loading state as true
-  const [singlePokemon, setSinglePokemon] = useState(null); // Change initial state to null
   const { id } = useParams();
+  const { allPokemons, loading } = useContext(PokemonAPIContext);
+  const [currentPokemon, setCurrentPokemon] = useState(parseInt(id, 10));
+  const pokemonId = parseInt(id, 10);
+  const onePokemon = allPokemons.find((el) => el.id === pokemonId);
+  console.log(onePokemon);
 
-  const fetchAPI = async () => {
-    try {
-      const response = await fetch(
-        `https://pokenode-56qg.onrender.com/pokemon/${id}`
-      );
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
+  const prevPokemon = () => {
+    setCurrentPokemon((prev) => {
+      if (prev === 0) {
+        return allPokemons.length - 1;
+      } else {
+        return prev - 1;
       }
-      const data = await response.json();
-      console.log("transmitted data:", data.data);
-      setSinglePokemon(data.data);
-      setLoading(false); // Set loading to false after data is fetched
-    } catch (error) {
-      console.error("Error fetching Pokemons:", error);
-    }
+    });
   };
 
-  useEffect(() => {
-    fetchAPI();
-  }, [id]);
-
-  if (loading) {
-    return <div>Loading Pokemons...</div>;
-  }
+  const nextPokemon = () => {
+    setCurrentPokemon((prev) => {
+      if (prev === allPokemons.length - 1) {
+        return 0;
+      } else {
+        return prev + 1;
+      }
+    });
+  };
 
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
-      <img
-        style={{ width: "500px", height: "auto" }}
-        src={singlePokemon.url}
-        alt={singlePokemon.name.english}
-      />
-      <h3 className="singlePokemonName">{singlePokemon.name.english}</h3>
-      <div
-        className="PokemonType"
-        style={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          flexWrap: "nowrap",
-        }}
-      >
-        {/* Render types */}
-        {singlePokemon.type.map((type, index) => (
-          <img
-            key={index}
-            style={{ height: "auto", maxWidth: "8rem" }}
-            src={`/types/${type}.png`}
-            alt={type}
-          />
-        ))}
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "nowrap",
-          }}
-        >
-          <div>
-            <h3 className="singlePokemonName">Stats:</h3>
-            {/* Check if singlePokemon.base exists before accessing its properties */}
-            <p>Attack: {singlePokemon.base && singlePokemon.base.Attack}</p>
-            <p>Defense: {singlePokemon.base && singlePokemon.base.Defense}</p>
-            <p>Health: {singlePokemon.base && singlePokemon.base.HP}</p>
-            <p>Speed: {singlePokemon.base && singlePokemon.base.Speed}</p>
+    <div>
+      {loading ? (
+        <div>Loading Pokemon...</div>
+      ) : onePokemon ? (
+        <>
+          <div className={styles.container}>
+            <div className={styles.upperPart}>
+              <a className={styles.arrow} href="/" onClick={prevPokemon}>
+                <img src="/ArrowLeft.png" alt="Previous Pokemon" />
+              </a>
+              <div className={styles.PokemonNameContainer}>
+                <h1 className={styles.PokemonName}>
+                  {onePokemon.name.english}
+                </h1>
+                <img
+                  src={onePokemon.url}
+                  alt="Pokemon"
+                  className={styles.image}
+                />
+              </div>
+              <a className={styles.arrow} href="/" onClick={nextPokemon}>
+                <img src="/arrowRight.png" alt="Next Pokemon" />
+              </a>
+            </div>
+            <div className={styles.downPart}>
+              <div>
+                <ProgressBar variant="success" now={20} label={20} max={120} />
+                <ProgressBar variant="info" now={20} label={20} />
+                <ProgressBar variant="warning" now={20} label={20} />
+                <ProgressBar variant="danger" now={20} label={20} />
+              </div>
+              {/* This should be the white part with all the infos */}
+            </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <div>Pokemon with ID {id} not found.</div>
+      )}
+
     </div>
   );
 }

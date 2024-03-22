@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.upperPart {
+  background-color: aqua;
+  height: 380px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.downPart {
+  background-color: white;
+  height: 380px;
+  background-color: antiquewhite;
+  border-radius: 10px 10px 0 0;
+}
+
+.Pokename {
+  font-size: 6rem;
+  color: white;
+  -webkit-text-stroke: 1px black;
+  padding-top: 4rem;
+}
+
+.arrow {
+  align-self: center;
+}
+
+.image {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  margin-top: 3rem;
+}
+
+.PokemonNameContainer {
+  display: flex;
+  flex-direction: column;
+}
