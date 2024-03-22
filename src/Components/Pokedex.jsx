@@ -56,6 +56,12 @@ export default function Pokedex() {
       // Add cases for other types with their corresponding color class names
       case "Poison":
         return styles.button_color_poison;
+      case "Normal":
+        return styles.button_color_normal;
+      case "Water":
+        return styles.button_color_water;
+      case "Ground":
+        return styles.button_color_ground;
       default:
         return styles.filter_button; // Default color for non-matching types
     }
@@ -87,7 +93,7 @@ export default function Pokedex() {
           }
           onClick={() => handleTypeChange("")}
         >
-          Show All Pokémon
+          All Pokémon
         </button>
       </div>
 

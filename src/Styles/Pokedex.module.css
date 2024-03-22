@@ -88,6 +88,7 @@
 
 button {
   border-radius: 10px;
+  border-color: white;
   padding: 0.5rem;
   color: white;
   font-size: 2rem;
@@ -115,16 +116,33 @@ button {
   background-color: white;
   color: black;
 }
+
+.filter_button {
+  background-color: white;
+  color: rgba(87, 88, 87, 0.365);
+}
 .button_color_bug {
-  background-color: greenyellow;
+  background-color: #a8b823;
 }
 
 .button_color_grass {
-  background-color: green;
+  background-color: #7fcc5b;
 }
 
 .button_color_poison {
-  background-color: violet;
+  background-color: #a951a8;
+}
+
+.button_color_normal {
+  background-color: #b0b084;
+}
+
+.button_color_water {
+  background-color: #688ff1;
+}
+
+.button_color_ground {
+  background-color: #e3c77d;
 }
 
 .search_bar_container {
@@ -140,4 +158,8 @@ button {
   width: 400px;
   height: 50px;
   text-align: center;
+}
+
+.name.english {
+  color: black;
 }
