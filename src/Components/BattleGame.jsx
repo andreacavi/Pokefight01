@@ -13,7 +13,7 @@ const BattleGame = () => {
   const [battleMessage, setBattleMessage] = useState("");
   const [isAttacking, setIsAttacking] = useState(false);
   const [playerScore, setPlayerScore] = useState(0);
-  const [playerName, setPlayerName] = useState("Ash"); // Placeholder for player's name
+  const [playerName, setPlayerName] = useState(" ");
   const [showNameInput, setShowNameInput] = useState(false);
 
   useEffect(() => {
@@ -236,6 +236,7 @@ const BattleGame = () => {
           onClick={() => {
             setUserPokemon(null);
             setOpponentPokemon(null);
+            setBattleMessage("");
           }}
         >
           <img className="endImgT" src="/try.png" alt="try again?" />
@@ -272,6 +273,7 @@ const BattleGame = () => {
           onClick={() => {
             setUserPokemon(null);
             setOpponentPokemon(null);
+            setBattleMessage("");
           }}
         >
           <img className="endImgT" src="/try.png" alt="Try Again?" />
