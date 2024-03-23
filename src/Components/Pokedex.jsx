@@ -130,7 +130,11 @@ export default function Pokedex() {
             }
             onClick={() => handleTypeChange(type)}
           >
-            {type}
+            <img
+              style={{ height: "auto", maxWidth: "8rem" }}
+              src={`/types/${type}.png`}
+              alt={type}
+            />
           </button>
         ))}
       </div>

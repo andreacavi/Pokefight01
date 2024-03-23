@@ -1,0 +1,22 @@
+.pokemon-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pokemon-option {
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px black;
+}
+
+.pokeOptPic {
+  height: 6rem;
+  width: auto;
+}
+
+.SelectPokeBut {
+  background: none;
+  border-radius: 1rem;
+}
