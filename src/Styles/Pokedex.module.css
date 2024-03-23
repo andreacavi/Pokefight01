@@ -113,16 +113,18 @@ button {
 }
 
 .filter_button_all {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   color: black;
 }
 
 .filter_button {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
+  border: none;
   color: rgba(87, 88, 87, 0.365);
 }
 .button_color_bug {
   background-color: #a8b823;
+  background-image: "url(/types/Bug.png)";
 }
 
 .button_color_grass {

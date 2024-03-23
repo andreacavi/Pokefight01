@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function Pokedex() {
   const { allPokemons, loading } = useContext(PokemonAPIContext);
+
   const [selectedType, setSelectedType] = useState("");
   const [searchTerm, setSearchTerm] = useState(""); // New state for search term
 
@@ -129,7 +130,11 @@ export default function Pokedex() {
             }
             onClick={() => handleTypeChange(type)}
           >
-            {type}
+            <img
+              style={{ height: "auto", maxWidth: "8rem" }}
+              src={`/types/${type}.png`}
+              alt={type}
+            />
           </button>
         ))}
       </div>
@@ -147,7 +152,7 @@ export default function Pokedex() {
               } ${getCardColorBasedOnPokemonType(pokemon)}`}
               key={pokemon.id}
             >
-              <Link to={`/pokemon/${pokemon.id}`}>
+              <Link to={`/pokedex/${pokemon.id}`}>
                 <img
                   style={{ width: "150px", height: "150px" }}
                   className={styles.pokemon_pic}

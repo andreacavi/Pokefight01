@@ -108,6 +108,7 @@ export default function PokemonPage() {
       ) : (
         <div>Pokemon with ID {id} not found.</div>
       )}
+
     </div>
   );
 }
