@@ -168,13 +168,15 @@ export default function Pokedex() {
                   />
                 </Link>
                 <div className={styles.pokemon_base_container}>
-                  <div className={styles.progress_bar_card}>
+                  <div>
                     HP
                     <ProgressBar
+                      className={styles.progress_bar_card}
                       variant="success"
                       now={pokemon.base.HP}
                       label={pokemon.base.HP}
-                      max={100}
+                      max={150}
+                      style={{ height: "2rem", fontSize: "1.5rem" }}
                     />
                   </div>
 
@@ -185,6 +187,7 @@ export default function Pokedex() {
                       now={pokemon.base.Attack}
                       label={pokemon.base.Attack}
                       max={100}
+                      style={{ height: "2rem", fontSize: "1.5rem" }}
                     />
                   </div>
                   <div>
@@ -194,10 +197,9 @@ export default function Pokedex() {
                       now={pokemon.base.Defense}
                       label={pokemon.base.Defense}
                       max={100}
+                      style={{ height: "2rem", fontSize: "1.5rem" }}
                     />
                   </div>
-                  {/* <div>{pokemon.base.Sp\.Attack}</div>
-<div>{pokemon.base.Sp\.Defense}</div> */}
                   <div>
                     SPEED
                     <ProgressBar
@@ -205,6 +207,7 @@ export default function Pokedex() {
                       now={pokemon.base.Speed}
                       label={pokemon.base.Speed}
                       max={100}
+                      style={{ height: "2rem", fontSize: "1.5rem" }}
                     />
                   </div>
                 </div>
