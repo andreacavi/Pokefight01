@@ -1,49 +1,46 @@
 .pokemon-list {
-  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
   padding: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-color: rosybrown;
-  max-width: 1200px;
-  box-sizing: border-box;
+  /* max-width: 1200px; */
+  margin: 0 auto;
 }
 
 .pokemon-option {
-  margin: 20px;
-  padding: 20px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
   border: solid 1px black;
   border-radius: 20px;
-  background-color: #4370709b;
-  height: 100%;
+  background-color: #dcd441;
   transition: transform 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(141, 31, 31, 0.2);
 }
 
-.pokemon-option:hover,
-.pokemon-option:active {
-  transform: scale(1.1);
+.pokemon-option:hover {
+  transform: scale(1.05);
 }
 
 .pokeOptPic {
   height: 6rem;
   width: auto;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.5rem;
 }
 
 .SelectPokeBut {
   padding: 10px 20px;
-  margin-top: 20px;
-  background: none;
+  background-color: #4370709b;
+  border: none;
   border-radius: 1rem;
-  text-align: center;
+  cursor: pointer;
 }
 
 .PokemonDisplays {
   margin-top: 0;
-  margin: 15rem 15rem;
+  margin: 5rem 5rem;
   margin-bottom: 5rem;
   display: flex;
   flex-direction: row;

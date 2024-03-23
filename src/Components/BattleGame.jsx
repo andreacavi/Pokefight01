@@ -138,7 +138,7 @@ const BattleGame = () => {
 
   const renderPokemonSelectMenu = () => (
     <div className="pokemon-menu">
-      <h2>Select Your Pokemon</h2>
+      <h1>Select Your Pokemon</h1>
       <div className="pokemon-list">
         {allPokemons.map((pokemon) => (
           <div
@@ -151,7 +151,9 @@ const BattleGame = () => {
               alt={pokemon.name.english}
               className="pokeOptPic"
             />
-            <button className="SelectPokeBut">Select</button>
+            <button className="SelectPokeBut">
+              Select <br /> {pokemon.name.english}{" "}
+            </button>
           </div>
         ))}
       </div>
