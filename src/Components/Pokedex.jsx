@@ -2,6 +2,9 @@ import { useContext, useState } from "react";
 import { PokemonAPIContext } from "../Context/PokemonAPIContext";
 import styles from "../Styles/Pokedex.module.css";
 import { Link } from "react-router-dom";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import BackToToPButton from "./BackToToPButton";
+import ScrollDownButton from "./ScrollDownButton";
 
 export default function Pokedex() {
   const { allPokemons, loading } = useContext(PokemonAPIContext);
@@ -165,12 +168,45 @@ export default function Pokedex() {
                   />
                 </Link>
                 <div className={styles.pokemon_base_container}>
-                  <div>{pokemon.base.HP}</div>
-                  <div>{pokemon.base.Attack}</div>
-                  <div>{pokemon.base.Defense}</div>
+                  <div className={styles.progress_bar_card}>
+                    HP
+                    <ProgressBar
+                      variant="success"
+                      now={pokemon.base.HP}
+                      label={pokemon.base.HP}
+                      max={100}
+                    />
+                  </div>
+
+                  <div>
+                    ATTACK
+                    <ProgressBar
+                      variant="info"
+                      now={pokemon.base.Attack}
+                      label={pokemon.base.Attack}
+                      max={100}
+                    />
+                  </div>
+                  <div>
+                    DEFENSE
+                    <ProgressBar
+                      variant="warning"
+                      now={pokemon.base.Defense}
+                      label={pokemon.base.Defense}
+                      max={100}
+                    />
+                  </div>
                   {/* <div>{pokemon.base.Sp\.Attack}</div>
 <div>{pokemon.base.Sp\.Defense}</div> */}
-                  <div>{pokemon.base.Speed}</div>
+                  <div>
+                    SPEED
+                    <ProgressBar
+                      variant="danger"
+                      now={pokemon.base.Speed}
+                      label={pokemon.base.Speed}
+                      max={100}
+                    />
+                  </div>
                 </div>
               </div>
               <div className={styles.card_front}>
@@ -201,6 +237,8 @@ export default function Pokedex() {
           ))}
         </div>
       )}
+      <ScrollDownButton />
+      <BackToToPButton />
     </div>
   );
 }
