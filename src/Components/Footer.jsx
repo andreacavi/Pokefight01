@@ -7,6 +7,7 @@ export default function Footer() {
         justifyContent: "center",
         backgroundColor: "#c4696e",
         height: "100%",
+        marginTop: "auto",
       }}
     >
       PokeFight | Group 01 | Marco, Andrea, Moritz | WBS Cooding School 2023

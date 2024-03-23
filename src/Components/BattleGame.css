@@ -1,20 +1,30 @@
 .pokemon-list {
-  margin-top: 0;
+  margin: 0 auto;
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   background-color: rosybrown;
+  max-width: 1200px;
+  box-sizing: border-box;
 }
 
 .pokemon-option {
-  margin: 1rem;
-  padding: 1rem;
+  margin: 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   border: solid 1px black;
   border-radius: 20px;
   background-color: #4370709b;
   height: 100%;
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pokemon-option:hover,
+.pokemon-option:active {
+  transform: scale(1.1);
 }
 
 .pokeOptPic {
@@ -24,9 +34,11 @@
 }
 
 .SelectPokeBut {
-  margin-top: 1rem;
+  padding: 10px 20px;
+  margin-top: 20px;
   background: none;
   border-radius: 1rem;
+  text-align: center;
 }
 
 .PokemonDisplays {
@@ -38,6 +50,13 @@
   align-items: center;
   justify-content: space-between;
   width: auto;
+}
+
+.hp-bar {
+  transition: width 1s ease;
+  height: 20px;
+  background-color: green;
+  border-radius: 5px;
 }
 
 .pokemon > img {
@@ -74,7 +93,7 @@
   align-items: center;
   justify-content: space-around;
   padding: 1rem;
-  margin: 0 1rem 0 0; /* Adjusted margin */
+  margin: 0 1rem 0 0; 
 }
 
 .ActionButtons {
@@ -84,8 +103,8 @@
   background-color: #4370709b;
 }
 .BattleMessage {
-  flex: 1; /* Take up remaining width */
-  text-align: center; /* Align text in the center */
+  flex: 1;
+  text-align: center; 
   font-size: 3rem;
 }
 
@@ -134,7 +153,6 @@
   border-top: solid 5px black;
   border-bottom: solid 5px black;
 }
-/* BattleGame.css */
 #UserPokehealth {
   width: 100%;
   height: 20px;
@@ -168,5 +186,37 @@
 }
 
 .attack-animation {
-  margin-left: 50px; /* Adjust the value as needed */
+  margin-left: 50px; /
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(10px);
+  }
+}
+
+.pokemon-attacking {
+  animation: shake 0.8s; 
+  animation-iteration-count: 1; 
+}
+
+.LoadingDisplay{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 89vh;
 }
