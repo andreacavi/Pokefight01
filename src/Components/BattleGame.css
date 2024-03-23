@@ -20,3 +20,24 @@
   background: none;
   border-radius: 1rem;
 }
+
+.PokemonDisplays {
+  margin: 15rem 25rem;
+  margin-bottom: 5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pokemon > img {
+  height: 50rem;
+  width: auto;
+}
+
+.ActionContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
