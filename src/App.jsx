@@ -6,7 +6,7 @@ import Home from "./Components/Home";
 import Pokedex from "./Components/Pokedex";
 import PokemonPage from "./Components/PokemonPage";
 import Leaderboard from "./Components/Leaderboard";
-import FightPage from "./Components/FightPage";
+import BattleGame from "./Components/BattleGame";
 import AboutUs from "./Components/AboutUs";
 import Footer from "./Components/Footer";
 import Error from "./Components/Error";
@@ -22,7 +22,9 @@ function App() {
         <Route path="/pokedex" element={<Pokedex />} />
         <Route path="/pokedex/:id" element={<PokemonPage />} />
         <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/pokefight/:id" element={<FightPage />} />
+
+        <Route path="/pokefight" element={<BattleGame />} />
+
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="*" element={<Error />} />
       </Routes>
