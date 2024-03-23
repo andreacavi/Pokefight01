@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./Components/Navbar";
@@ -12,8 +11,6 @@ import Footer from "./Components/Footer";
 import Error from "./Components/Error";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div>
       <Navbar />

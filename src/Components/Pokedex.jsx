@@ -131,7 +131,7 @@ export default function Pokedex() {
             onClick={() => handleTypeChange(type)}
           >
             <img
-              style={{ height: "auto", maxWidth: "8rem" }}
+              style={{ height: "auto", maxWidth: "12rem" }}
               src={`/types/${type}.png`}
               alt={type}
             />
@@ -153,7 +153,9 @@ export default function Pokedex() {
               key={pokemon.id}
             >
               <div className={styles.card_back}>
-                <p>{pokemon.name.english}</p>
+                <p className={styles.pokemon_name_card_back}>
+                  {pokemon.name.english}
+                </p>
                 <Link to={`/pokedex/${pokemon.id}`}>
                   <img
                     style={{ width: "150px", height: "150px" }}
@@ -162,7 +164,14 @@ export default function Pokedex() {
                     alt={pokemon.name.english}
                   />
                 </Link>
-                BACK
+                <div className={styles.pokemon_base_container}>
+                  <div>{pokemon.base.HP}</div>
+                  <div>{pokemon.base.Attack}</div>
+                  <div>{pokemon.base.Defense}</div>
+                  {/* <div>{pokemon.base.Sp\.Attack}</div>
+<div>{pokemon.base.Sp\.Defense}</div> */}
+                  <div>{pokemon.base.Speed}</div>
+                </div>
               </div>
               <div className={styles.card_front}>
                 <Link to={`/pokedex/${pokemon.id}`}>
@@ -173,12 +182,18 @@ export default function Pokedex() {
                     alt={pokemon.name.english}
                   />
                 </Link>
-                <h3 className="PokemonName">{pokemon.name.english}</h3>
+                <h3 className={styles.pokemon_name_card_front}>
+                  {pokemon.name.english}
+                </h3>
                 <div className="PokemonTypes">
                   {pokemon.type.map((type) => (
-                    <p key={type} className="PokemonType">
-                      {type}
-                    </p>
+                    <div key={type}>
+                      <img
+                        style={{ height: "auto", maxWidth: "12rem" }}
+                        src={`/types/${type}.png`}
+                        alt={type}
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
