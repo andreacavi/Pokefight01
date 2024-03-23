@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { PokemonAPIContext } from "../Context/PokemonAPIContext";
 import styles from "../Styles/PokemonPage.module.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
@@ -72,7 +72,6 @@ export default function PokemonPage() {
       ) : (
         <div>Pokemon with ID {id} not found.</div>
       )}
-
     </div>
   );
 }
