@@ -1,33 +1,43 @@
 .pokemon-list {
+  margin-top: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: rosybrown;
 }
 
 .pokemon-option {
   margin: 1rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   border: solid 1px black;
+  border-radius: 20px;
+  background-color: #4370709b;
+  height: 100%;
 }
 
 .pokeOptPic {
   height: 6rem;
   width: auto;
+  margin-bottom: 0.2rem;
 }
 
 .SelectPokeBut {
+  margin-top: 1rem;
   background: none;
   border-radius: 1rem;
 }
 
 .PokemonDisplays {
-  margin: 15rem 25rem;
+  margin-top: 0;
+  margin: 15rem 15rem;
   margin-bottom: 5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  width: auto;
 }
 
 .pokemon > img {
@@ -35,9 +45,128 @@
   width: auto;
 }
 
+.battle-screen {
+  height: 85vh;
+  margin: 5rem 5rem 0 5rem;
+  background-color: #ddd;
+  padding: 1rem;
+  border-left: solid 10px black;
+  border-right: solid 10px black;
+  border-top: solid 5px black;
+  border-bottom: solid 5px black;
+}
+
+.LogicDisplay {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #dddddd3b;
+  padding: 1rem;
+  margin: 0 5rem;
+  border: solid 1px black;
+}
 .ActionContainer {
+  width: 20%;
+  align-self: start;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  padding: 1rem;
+  margin: 0 1rem 0 0; /* Adjusted margin */
+}
+
+.ActionButtons {
+  margin: 0 1rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #4370709b;
+}
+.BattleMessage {
+  flex: 1; /* Take up remaining width */
+  text-align: center; /* Align text in the center */
+  font-size: 3rem;
+}
+
+.TryagainButton {
+  background: none;
+  border: none;
+}
+
+.endImg {
+  height: 25rem;
+  width: auto;
+}
+.endImgT {
+  height: 15rem;
+  width: auto;
+}
+
+.pokemon-win-screen {
+  height: 85vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 5rem 5rem 0 5rem;
+  background-color: #ddd;
+  padding: 1rem;
+  border-left: solid 10px black;
+  border-right: solid 10px black;
+  border-top: solid 5px black;
+  border-bottom: solid 5px black;
+}
+
+.pokemon-lose-screen {
+  height: 85vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 5rem 5rem 0 5rem;
+  background-color: #ddd;
+  padding: 1rem;
+  border-left: solid 10px black;
+  border-right: solid 10px black;
+  border-top: solid 5px black;
+  border-bottom: solid 5px black;
+}
+/* BattleGame.css */
+#UserPokehealth {
+  width: 100%;
+  height: 20px;
+  background-color: #ddd;
+}
+
+#UserPokehealth::-webkit-progress-bar {
+  background-color: #ddd;
+}
+
+#UserPokehealth::-webkit-progress-value {
+  background-color: green;
+}
+
+#OpponentPokehealth {
+  width: 100%;
+  height: 20px;
+  background-color: #ddd;
+}
+
+#OpponentPokehealth::-webkit-progress-bar {
+  background-color: #ddd;
+}
+
+#OpponentPokehealth::-webkit-progress-value {
+  background-color: red;
+}
+
+.pokemon {
+  transition: margin-left 0.5s ease-in-out;
+}
+
+.attack-animation {
+  margin-left: 50px; /* Adjust the value as needed */
 }

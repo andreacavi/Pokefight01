@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { PokemonAPIContext } from "../Context/PokemonAPIContext";
 import "./BattleGame.css";
 
@@ -9,6 +9,10 @@ const BattleGame = () => {
   const [userPokemonHPCurrent, setUserPokemonHPCurrent] = useState(null);
   const [opponentPokemonHPCurrent, setOpponentPokemonHPCurrent] =
     useState(null);
+  const [playerTurn, setPlayerTurn] = useState(true);
+  const [battleMessage, setBattleMessage] = useState("");
+
+  const userPokemonAttack = 10;
 
   // Ensure userPokemonHPCurrent is initialized with correct value
   useEffect(() => {
@@ -24,27 +28,39 @@ const BattleGame = () => {
     }
   }, [opponentPokemon]);
 
-  // Function to handle attacks
   const handleAttack = () => {
-    if (userPokemonHPCurrent !== null) {
-      const newHealth = userPokemonHPCurrent - 10; // Decrease user's Pokémon health by 10
-      setUserPokemonHPCurrent(newHealth); // Update the state
+    if (playerTurn && userPokemonHPCurrent !== null) {
+      const newHealth = opponentPokemonHPCurrent - 10; // Decrease opponent's Pokémon health by 10
+      setOpponentPokemonHPCurrent(newHealth); // Update the state
+      setBattleMessage("Player attacked!");
+      setPlayerTurn(false); // Switch turns to AI
     }
   };
 
   const handleHeal = () => {
-    if (userPokemonHPCurrent !== null) {
-      const newHealth = userPokemonHPCurrent + 10; // Decrease user's Pokémon health by 10
+    if (playerTurn && userPokemonHPCurrent !== null) {
+      const newHealth = userPokemonHPCurrent + 10; // Increase user's Pokémon health by 10
       setUserPokemonHPCurrent(newHealth); // Update the state
+      setBattleMessage("Player healed their Pokémon!");
+      setPlayerTurn(false); // Switch turns to AI
     }
   };
 
-  const handleOpponentAttack = () => {
-    if (opponentPokemonHPCurrent !== null) {
-      const newHealth = opponentPokemonHPCurrent - 10; // Decrease opponent's Pokémon health by 10
-      setOpponentPokemonHPCurrent(newHealth); // Update the state
+  useEffect(() => {
+    if (!playerTurn && opponentPokemonHPCurrent !== null) {
+      const aiAction = Math.random() < 0.5 ? "attack" : "heal"; // Randomly choose AI action
+      if (aiAction === "attack") {
+        const newHealth = userPokemonHPCurrent - 10; // Decrease user's Pokémon health by 10
+        setUserPokemonHPCurrent(newHealth); // Update the state
+        setBattleMessage("Opponent attacked!");
+      } else if (aiAction === "heal") {
+        const newHealth = opponentPokemonHPCurrent + 10; // Increase opponent's Pokémon health by 10
+        setOpponentPokemonHPCurrent(newHealth); // Update the state
+        setBattleMessage("Opponent healed their Pokémon!");
+      }
+      setPlayerTurn(true); // Switch turns back to player
     }
-  };
+  }, [playerTurn]);
 
   const handleSelectPokemon = (pokemon) => {
     setUserPokemon(pokemon);
@@ -103,10 +119,25 @@ const BattleGame = () => {
             ></progress>
           </div>
         </div>
-        <div className="ActionContainer">
-          <button onClick={handleAttack}>Attack</button>
-          <button onClick={handleHeal}>Heal</button>
-          <button onClick={handleOpponentAttack}>Opponent Attack</button>
+        <div className="LogicDisplay">
+          <div className="ActionContainer">
+            <button
+              className="ActionButtons"
+              onClick={handleAttack}
+              disabled={!playerTurn}
+            >
+              Attack
+            </button>
+            <button
+              className="ActionButtons"
+              onClick={handleHeal}
+              disabled={!playerTurn}
+            >
+              Heal
+            </button>
+          </div>
+
+          <div className="BattleMessage">{battleMessage}</div>
         </div>
       </div>
     );
@@ -115,8 +146,11 @@ const BattleGame = () => {
   const renderPokemonWinScreen = () => {
     return (
       <div className="pokemon-win-screen">
-        <h2>Congratulations! You won!</h2>
-        <button onClick={() => setUserPokemon(null)}>Play again</button>
+        <img className="endImg" src="/won.png" alt="You Win!" />
+
+        <button className="TryagainButton" onClick={() => setUserPokemon(null)}>
+          <img className="endImgT" src="/try.png" alt="try again?" />
+        </button>
       </div>
     );
   };
@@ -124,8 +158,10 @@ const BattleGame = () => {
   const renderPokemonLoseScreen = () => {
     return (
       <div className="pokemon-lose-screen">
-        <h2>Oh no! You lost!</h2>
-        <button onClick={() => setUserPokemon(null)}>Play again</button>
+        <img className="endImg" src="/lost.png" alt="You lose!" />
+        <button className="TryagainButton" onClick={() => setUserPokemon(null)}>
+          <img className="endImgT" src="/try.png" alt="try again?" />
+        </button>
       </div>
     );
   };
@@ -142,11 +178,11 @@ const BattleGame = () => {
     return renderPokemonSelectMenu();
   }
 
-  if (opponentPokemonHPCurrent === 0) {
+  if (opponentPokemonHPCurrent <= 0) {
     return renderPokemonWinScreen();
   }
 
-  if (userPokemonHPCurrent === 0) {
+  if (userPokemonHPCurrent <= 0) {
     return renderPokemonLoseScreen();
   }
 
