@@ -203,3 +203,7 @@ button {
 .name.english {
   color: black;
 }
+
+.bar {
+  height: 100px;
+}
