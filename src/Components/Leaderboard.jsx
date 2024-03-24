@@ -7,7 +7,9 @@ function Leaderboard() {
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
-        const response = await fetch("http://localhost:8080/leaderboard");
+        const response = await fetch(
+          "https://pokenode-56qg.onrender.com/leaderboard"
+        );
         const data = await response.json();
         if (response.ok) {
           return data; // or set state in your component to update the UI
