@@ -134,7 +134,9 @@ export default function Pokedex() {
             onClick={() => handleTypeChange(type)}
           >
             <img
+
               style={{ height: "auto", maxWidth: "12rem" }}
+
               src={`/types/${type}.png`}
               alt={type}
             />

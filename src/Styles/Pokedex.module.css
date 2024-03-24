@@ -125,11 +125,13 @@ button {
 }
 
 .filter_button_all {
+
   width: 25rem;
   height: auto;
   border-radius: 10px;
   font-size: 3rem;
   padding: 0.5rem;
+
   color: black;
   font-family: "Kavoon", serif;
   font-size: 3rem;
@@ -141,9 +143,11 @@ button {
   border-radius: 10px;
 }
 .filter_button {
+
   width: 15rem;
   height: auto;
   border-radius: 10px;
+
 }
 .button_color_bug {
   background-color: #a8b823;
@@ -229,6 +233,7 @@ button {
   color: black;
 }
 
+
 .progress_bar_card {
   width: 20rem;
 }
@@ -240,4 +245,5 @@ button {
   row-gap: 0.5rem;
   font-size: 1.5rem;
   color: black;
+
 }
