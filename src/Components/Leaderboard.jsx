@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./Leaderboard.css";
 
 function Leaderboard() {
   const [leaders, setLeaders] = useState([]);
@@ -22,12 +23,13 @@ function Leaderboard() {
   }, []);
 
   return (
-    <div>
+    <div className="leaderboard-container">
       <h2>Leaderboard</h2>
-      <ul>
+      <ul className="leaderboard-list">
         {leaders.map((leader, index) => (
           <li key={index}>
-            {leader.playername} - {leader.score}
+            <span className="leaderboard-player">{leader.playername}</span>-
+            <span className="leaderboard-score">{leader.score}</span>
           </li>
         ))}
       </ul>

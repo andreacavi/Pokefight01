@@ -75,14 +75,14 @@ const BattleGame = () => {
         if (aiAction === "attack") {
           newHealth = Math.max(0, userPokemonHPCurrent - 10);
           setUserPokemonHPCurrent(newHealth);
-          setBattleMessage("Opponent attacked!");
+          setBattleMessage(`${opponentPokemon.name.english} attacked!`);
         } else {
           newHealth = Math.min(
             opponentPokemonHPCurrent + 20,
             opponentPokemon.base.HP
           );
           setOpponentPokemonHPCurrent(newHealth);
-          setBattleMessage("Opponent healed their Pokémon!");
+          setBattleMessage(`${opponentPokemon.name.english} ate a Berry!`);
         }
         setPlayerTurn(true);
       }
@@ -116,8 +116,7 @@ const BattleGame = () => {
     // Check if the game is won and if the playerName should be set
     if (!playerName && opponentPokemonHPCurrent <= 0) {
       setShowNameInput(true);
-      setPlayerScore(playerScore + 100); // Increment score by 100 when the player wins
-      submitScore(); // This could be conditional based on whether playerName is already set
+      submitScore();
     } else {
       setShowNameInput(false);
     }
@@ -212,7 +211,6 @@ const BattleGame = () => {
     const handleNameSubmit = async () => {
       if (playerName.trim() !== "") {
         await submitScore();
-        setPlayerScore(playerScore + 100); // Increment the player's score for win scenario
       } else {
         alert("Please enter a name.");
       }
