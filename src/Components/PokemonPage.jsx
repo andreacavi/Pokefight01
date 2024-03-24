@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { PokemonAPIContext } from "../Context/PokemonAPIContext";
 import styles from "../Styles/PokemonPage.module.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
@@ -16,7 +16,7 @@ export default function PokemonPage() {
   const prevPokemon = () => {
     setCurrentPokemon((prev) => {
       if (prev === 0) {
-        return allPokemons.length - 1;
+        return onePokemon.length - 1;
       } else {
         return prev - 1;
       }
@@ -25,7 +25,7 @@ export default function PokemonPage() {
 
   const nextPokemon = () => {
     setCurrentPokemon((prev) => {
-      if (prev === allPokemons.length - 1) {
+      if (prev === onePokemon.length - 1) {
         return 0;
       } else {
         return prev + 1;
@@ -41,29 +41,65 @@ export default function PokemonPage() {
         <>
           <div className={styles.container}>
             <div className={styles.upperPart}>
-              <a className={styles.arrow} href="/" onClick={prevPokemon}>
+              <a
+                className={styles.arrow}
+                onClick={prevPokemon}
+                href={`/pokemon/${currentPokemon - 1}`}
+              >
                 <img src="/ArrowLeft.png" alt="Previous Pokemon" />
               </a>
               <div className={styles.PokemonNameContainer}>
-                <h1 className={styles.PokemonName}>
-                  {onePokemon.name.english}
-                </h1>
+                <h1 className={styles.Pokename}>{onePokemon.name.english}</h1>
                 <img
                   src={onePokemon.url}
                   alt="Pokemon"
                   className={styles.image}
                 />
               </div>
-              <a className={styles.arrow} href="/" onClick={nextPokemon}>
+              <a
+                className={styles.arrow}
+                href="/"
+                onClick={nextPokemon}
+                href={`/pokemon/${currentPokemon + 1}`}
+              >
                 <img src="/arrowRight.png" alt="Next Pokemon" />
               </a>
             </div>
             <div className={styles.downPart}>
-              <div>
-                <ProgressBar variant="success" now={20} label={20} max={120} />
-                <ProgressBar variant="info" now={20} label={20} />
-                <ProgressBar variant="warning" now={20} label={20} />
-                <ProgressBar variant="danger" now={20} label={20} />
+              <div className={styles.barContainer}>
+                <div className={styles.stats}>
+                  {onePokemon.name.english}'s Stats
+                </div>
+
+                <ProgressBar
+                  className={styles.bar}
+                  variant="success"
+                  now={onePokemon.base.HP}
+                  label={onePokemon.base.HP}
+                  max={150}
+                  style={{ height: "40px" }}
+                />
+                <ProgressBar
+                  variant="info"
+                  now={onePokemon.base.Defense}
+                  label={onePokemon.base.Defense}
+                  style={{ height: "40px" }}
+                  max={150}
+                />
+                <ProgressBar
+                  variant="warning"
+                  now={onePokemon.base.Speed}
+                  label={onePokemon.base.Speed}
+                  style={{ height: "40px" }}
+                  max={150}
+                />
+                <ProgressBar
+                  variant="danger"
+                  now={onePokemon.base.Attack}
+                  label={onePokemon.base.Attack}
+                  style={{ height: "40px" }}
+                  max={150}
+                />
               </div>
               {/* This should be the white part with all the infos */}
             </div>
@@ -72,7 +108,6 @@ export default function PokemonPage() {
       ) : (
         <div>Pokemon with ID {id} not found.</div>
       )}
-
     </div>
   );
 }

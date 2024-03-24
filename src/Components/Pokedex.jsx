@@ -2,6 +2,9 @@ import { useContext, useState } from "react";
 import { PokemonAPIContext } from "../Context/PokemonAPIContext";
 import styles from "../Styles/Pokedex.module.css";
 import { Link } from "react-router-dom";
+import ProgressBar from "react-bootstrap/ProgressBar";
+import BackToToPButton from "./BackToToPButton";
+import ScrollDownButton from "./ScrollDownButton";
 
 export default function Pokedex() {
   const { allPokemons, loading } = useContext(PokemonAPIContext);
@@ -131,7 +134,9 @@ export default function Pokedex() {
             onClick={() => handleTypeChange(type)}
           >
             <img
-              style={{ height: "auto", maxWidth: "8rem" }}
+
+              style={{ height: "auto", maxWidth: "12rem" }}
+
               src={`/types/${type}.png`}
               alt={type}
             />
@@ -152,22 +157,84 @@ export default function Pokedex() {
               } ${getCardColorBasedOnPokemonType(pokemon)}`}
               key={pokemon.id}
             >
-              <Link to={`/pokedex/${pokemon.id}`}>
-                <img
-                  style={{ width: "150px", height: "150px" }}
-                  className={styles.pokemon_pic}
-                  src={pokemon.url}
-                  alt={pokemon.name.english}
-                />
-              </Link>
-              <div className={styles.card_back}>BACK</div>
+              <div className={styles.card_back}>
+                <p className={styles.pokemon_name_card_back}>
+                  {pokemon.name.english}
+                </p>
+                <Link to={`/pokedex/${pokemon.id}`}>
+                  <img
+                    style={{ width: "150px", height: "150px" }}
+                    className={styles.pokemon_pic}
+                    src={pokemon.url}
+                    alt={pokemon.name.english}
+                  />
+                </Link>
+                <div className={styles.pokemon_base_container}>
+                  <div>
+                    HP
+                    <ProgressBar
+                      className={styles.progress_bar_card}
+                      variant="success"
+                      now={pokemon.base.HP}
+                      label={pokemon.base.HP}
+                      max={150}
+                      style={{ height: "2rem", fontSize: "1.5rem" }}
+                    />
+                  </div>
+
+                  <div>
+                    ATTACK
+                    <ProgressBar
+                      variant="info"
+                      now={pokemon.base.Attack}
+                      label={pokemon.base.Attack}
+                      max={100}
+                      style={{ height: "2rem", fontSize: "1.5rem" }}
+                    />
+                  </div>
+                  <div>
+                    DEFENSE
+                    <ProgressBar
+                      variant="warning"
+                      now={pokemon.base.Defense}
+                      label={pokemon.base.Defense}
+                      max={100}
+                      style={{ height: "2rem", fontSize: "1.5rem" }}
+                    />
+                  </div>
+                  <div>
+                    SPEED
+                    <ProgressBar
+                      variant="danger"
+                      now={pokemon.base.Speed}
+                      label={pokemon.base.Speed}
+                      max={100}
+                      style={{ height: "2rem", fontSize: "1.5rem" }}
+                    />
+                  </div>
+                </div>
+              </div>
               <div className={styles.card_front}>
-                <h3 className="PokemonName">{pokemon.name.english}</h3>
+                <Link to={`/pokedex/${pokemon.id}`}>
+                  <img
+                    style={{ width: "150px", height: "150px" }}
+                    className={styles.pokemon_pic}
+                    src={pokemon.url}
+                    alt={pokemon.name.english}
+                  />
+                </Link>
+                <h3 className={styles.pokemon_name_card_front}>
+                  {pokemon.name.english}
+                </h3>
                 <div className="PokemonTypes">
                   {pokemon.type.map((type) => (
-                    <p key={type} className="PokemonType">
-                      {type}
-                    </p>
+                    <div key={type}>
+                      <img
+                        style={{ height: "auto", maxWidth: "12rem" }}
+                        src={`/types/${type}.png`}
+                        alt={type}
+                      />
+                    </div>
                   ))}
                 </div>
               </div>
@@ -175,6 +242,8 @@ export default function Pokedex() {
           ))}
         </div>
       )}
+      <ScrollDownButton />
+      <BackToToPButton />
     </div>
   );
 }
