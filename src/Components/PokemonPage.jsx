@@ -44,10 +44,24 @@ export default function PokemonPage() {
               <a
                 className={styles.arrow}
                 onClick={prevPokemon}
-                href={`/pokemon/${currentPokemon - 1}`}
+                href={`/pokedex/${currentPokemon - 1}`}
               >
                 <img src="/ArrowLeft.png" alt="Previous Pokemon" />
               </a>
+
+              <div className={styles.tagsContainer}>
+                {" "}
+                {onePokemon.type.map((type, index) => (
+                  <img
+                    className={styles.tags}
+                    key={index}
+                    style={{ height: "auto", maxWidth: "8rem" }}
+                    src={`/types/${type}.png`}
+                    alt={type}
+                  />
+                ))}
+              </div>
+
               <div className={styles.PokemonNameContainer}>
                 <h1 className={styles.Pokename}>{onePokemon.name.english}</h1>
                 <img
@@ -60,7 +74,7 @@ export default function PokemonPage() {
                 className={styles.arrow}
                 href="/"
                 onClick={nextPokemon}
-                href={`/pokemon/${currentPokemon + 1}`}
+                href={`/pokedex/${currentPokemon + 1}`}
               >
                 <img src="/arrowRight.png" alt="Next Pokemon" />
               </a>

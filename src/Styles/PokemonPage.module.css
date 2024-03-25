@@ -35,11 +35,15 @@
   height: 300px;
   position: absolute;
   margin-top: 7rem;
+  align-self: center;
+  margin-right: 8rem;
 }
 
 .PokemonNameContainer {
   display: flex;
   flex-direction: column;
+  position: relative;
+  margin-right: 25rem;
 }
 
 .barContainer {
@@ -54,4 +58,15 @@
   font-size: 4rem;
   -webkit-text-stroke: black 1px;
   text-align: center;
+}
+
+.tags {
+  margin-top: 8rem;
+  margin-left: 7rem;
+  position: absolute;
+}
+
+.tagsContainer {
+  position: relative;
+  width: 100px;
 }
