@@ -1,5 +1,4 @@
-import { createContext } from "react";
-import { useEffect, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 export const PokemonAPIContext = createContext();
 
@@ -8,6 +7,12 @@ export default function PokemonAPIContextProvider(props) {
     { id: "", name: { english: "" }, type: [], url: "" },
   ]);
   const [loading, setLoading] = useState(true); // Initialize loading state as true
+  const [userChosenPokemon, setUserChosenPokemon] = useState(null); // New state for storing the chosen pokemon for battle
+
+  // Function to choose a pokemon for battle
+  const choosePokemonForBattle = (pokemon) => {
+    setUserChosenPokemon(pokemon);
+  };
 
   const fetchAPI = () => {
     try {
@@ -29,7 +34,14 @@ export default function PokemonAPIContextProvider(props) {
   }, []);
 
   return (
-    <PokemonAPIContext.Provider value={{ allPokemons, loading }}>
+    <PokemonAPIContext.Provider
+      value={{
+        allPokemons,
+        loading,
+        userChosenPokemon,
+        choosePokemonForBattle,
+      }}
+    >
       {props.children}
     </PokemonAPIContext.Provider>
   );

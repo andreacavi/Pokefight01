@@ -3,7 +3,6 @@
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
   padding: 20px;
-  /* max-width: 1200px; */
   margin: 0 auto;
 }
 
@@ -49,6 +48,22 @@
   width: auto;
 }
 
+.SelectPokeBut:hover, .ActionButtons:hover, .TryagainButton:hover {
+  background-color: #5a9d9d; /* Lighter shade for hover */
+  cursor: pointer;
+}
+
+.SelectPokeBut:active, .ActionButtons:active, .TryagainButton:active {
+  transform: scale(0.98); /* Slightly smaller on click */
+  background-color: #3c6e6e; /* Darker shade for click */
+}
+
+/* Improving readability and interactivity for buttons */
+.SelectPokeBut, .ActionButtons, .TryagainButton {
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+
 .hp-bar {
   transition: width 1s ease;
   height: 20px;
@@ -61,6 +76,38 @@
   width: auto;
 }
 
+.pokemon-menuSub{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 5rem
+}
+
+.instructions {
+  background-color: #f0f8ff31;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+
+}
+.pmenue{
+  font-size: 1.3rem;
+}
+
+.instructionsh1 {
+  margin-left: 3rem;
+  font-size: 4rem;
+}
+
+/* ------------------------------------------------------------------------- */
+
 .battle-screen {
   height: 85vh;
   margin: 5rem 5rem 0 5rem;
@@ -70,6 +117,7 @@
   border-right: solid 10px black;
   border-top: solid 5px black;
   border-bottom: solid 5px black;
+ 
 }
 
 .LogicDisplay {
@@ -105,6 +153,12 @@
   font-size: 3rem;
 }
 
+
+
+/* ------------------------------------------------------------------------- */
+
+
+
 .TryagainButton {
   background: none;
   border: none;
@@ -121,7 +175,6 @@
 
 .pokemon-win-screen {
   height: 85vh;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,7 +190,6 @@
 
 .pokemon-lose-screen {
   height: 85vh;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -150,6 +202,56 @@
   border-top: solid 5px black;
   border-bottom: solid 5px black;
 }
+
+
+
+/* Style for the name input field */
+.nameInput {
+  padding: 10px 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  border: 2px solid #437070; /* Change the color as needed */
+  border-radius: 8px;
+  background-color: #f0f8ff; /* Light background color */
+  font-size: 1rem; /* Adjust size as needed */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle inner shadow */
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.nameInput:focus {
+  border-color: #5a9d9d; /* Slightly darker shade for focus */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2), 0 0 5px rgba(90, 157, 157, 0.5); /* More prominent shadow when focused */
+  outline: none; /* Remove default outline */
+}
+
+/* Style for the submit score button */
+.submitScoreBtn {
+  padding: 10px 20px;
+  background-color: #437070; /* Change the color as needed */
+  color: white; /* Text color */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem; /* Adjust size as needed */
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.submitScoreBtn:hover {
+  background-color: #5a9d9d; /* Lighter shade for hover */
+}
+
+.submitScoreBtn:active {
+  transform: scale(0.98); /* Slight press effect */
+}
+
+
+
+
+
+
+/* ------------------------------------------------------------------------- */
+
 #UserPokehealth {
   width: 100%;
   height: 20px;
@@ -209,6 +311,7 @@
   animation: shake 0.8s; 
   animation-iteration-count: 1; 
 }
+/* ------------------------------------------------------------------------- */
 
 .LoadingDisplay{
   display: flex;

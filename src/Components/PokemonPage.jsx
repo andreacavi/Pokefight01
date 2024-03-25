@@ -3,9 +3,19 @@ import { PokemonAPIContext } from "../Context/PokemonAPIContext";
 import styles from "../Styles/PokemonPage.module.css";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export default function PokemonPage() {
+  // Get the necessary context and history hook
+  const { choosePokemonForBattle } = useContext(PokemonAPIContext);
+  const navigate = useNavigate();
+
+  // Method to handle clicking the 'Battle' button
+  const handleBattleClick = () => {
+    choosePokemonForBattle(onePokemon);
+    navigate("/pokefight");
+  };
+
   const { id } = useParams();
   const { allPokemons, loading } = useContext(PokemonAPIContext);
   const [currentPokemon, setCurrentPokemon] = useState(parseInt(id, 10));
@@ -58,7 +68,7 @@ export default function PokemonPage() {
               </div>
               <a
                 className={styles.arrow}
-                href="/"
+                // href="/"
                 onClick={nextPokemon}
                 href={`/pokemon/${currentPokemon + 1}`}
               >
@@ -68,7 +78,8 @@ export default function PokemonPage() {
             <div className={styles.downPart}>
               <div className={styles.barContainer}>
                 <div className={styles.stats}>
-                  {onePokemon.name.english}'s Stats
+                  {onePokemon.name.english}'s Stats <br />
+                  <button onClick={handleBattleClick}>Take into Battle</button>
                 </div>
 
                 <ProgressBar
