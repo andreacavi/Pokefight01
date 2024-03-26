@@ -192,9 +192,7 @@ const BattleGame = () => {
               alt={pokemon.name.english}
               className="pokeOptPic"
             />
-            <button className="SelectPokeBut">
-              Select <br /> {pokemon.name.english}{" "}
-            </button>
+            <button className="SelectPokeBut">{pokemon.name.english}</button>
           </div>
         ))}
       </div>
@@ -312,7 +310,14 @@ const BattleGame = () => {
         >
           Submit Score
         </button>
-        <button className="TryagainButton" onClick={handleKeepFighting}>
+        <button
+          className="TryagainButton"
+          onClick={() => {
+            setUserPokemon(null);
+            setOpponentPokemon(null);
+            setBattleMessage("");
+          }}
+        >
           <img className="endImgT" src="/try.png" alt="Try Again?" />
         </button>
       </div>

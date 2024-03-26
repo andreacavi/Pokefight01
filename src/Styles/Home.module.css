@@ -16,10 +16,30 @@
 }
 
 .btn {
+  margin-top: 5rem;
   outline: none;
   background: none;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.blinkClass {
+  animation: blink 1.6s normal infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+  0% {
+    opacity: 0;
+  }
 }
