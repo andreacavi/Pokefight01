@@ -46,11 +46,14 @@ export default function PokemonPage() {
                 onClick={prevPokemon}
                 href={`/pokedex/${currentPokemon - 1}`}
               >
-                <img src="/ArrowLeft.png" alt="Previous Pokemon" />
+                <img
+                  src="/PokeArrowLeft.png"
+                  alt="Previous Pokemon"
+                  className={styles.arrowImage}
+                />
               </a>
 
               <div className={styles.tagsContainer}>
-                {" "}
                 {onePokemon.type.map((type, index) => (
                   <img
                     className={styles.tags}
@@ -76,7 +79,11 @@ export default function PokemonPage() {
                 onClick={nextPokemon}
                 href={`/pokedex/${currentPokemon + 1}`}
               >
-                <img src="/arrowRight.png" alt="Next Pokemon" />
+                <img
+                  src="/PokeArrowRight-1.png"
+                  alt="Next Pokemon"
+                  className={styles.arrowImage}
+                />
               </a>
             </div>
             <div className={styles.downPart}>
@@ -84,7 +91,7 @@ export default function PokemonPage() {
                 <div className={styles.stats}>
                   {onePokemon.name.english}'s Stats
                 </div>
-
+                <div className={styles.textStats}>HP:</div>
                 <ProgressBar
                   className={styles.bar}
                   variant="success"
@@ -93,6 +100,7 @@ export default function PokemonPage() {
                   max={150}
                   style={{ height: "40px" }}
                 />
+                <div className={styles.textStats}>DF:</div>
                 <ProgressBar
                   variant="info"
                   now={onePokemon.base.Defense}
@@ -100,6 +108,7 @@ export default function PokemonPage() {
                   style={{ height: "40px" }}
                   max={150}
                 />
+                <div className={styles.textStats}>SP:</div>
                 <ProgressBar
                   variant="warning"
                   now={onePokemon.base.Speed}
@@ -107,6 +116,7 @@ export default function PokemonPage() {
                   style={{ height: "40px" }}
                   max={150}
                 />
+                <div className={styles.textStats}>AT:</div>
                 <ProgressBar
                   variant="danger"
                   now={onePokemon.base.Attack}
