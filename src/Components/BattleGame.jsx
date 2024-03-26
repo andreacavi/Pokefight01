@@ -42,7 +42,7 @@ const BattleGame = () => {
 
   const handleAttack = () => {
     if (playerTurn && opponentPokemonHPCurrent !== null && userPokemon) {
-      const baseDamage = 10;
+      const baseDamage = 5;
       const damageDealt = Math.max(
         1,
         (userPokemon.base.Attack / opponentPokemon.base.Defense) * baseDamage
@@ -173,7 +173,8 @@ const BattleGame = () => {
         <div className="instructions">
           <h3>How to Play:</h3>
           <p className="pmenue">
-            Select your Pokémon and use 'Attack' to weaken your opponent or
+            Select your Pokémon and use 'Attack' to weaken your opponent or{" "}
+            <br />
             'Heal' to restore your HP. Win by reducing your opponent's HP to
             zero!
           </p>

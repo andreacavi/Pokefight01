@@ -98,7 +98,7 @@
 
 }
 .pmenue{
-  font-size: 1.3rem;
+  font-size: 2rem;
 }
 
 .instructionsh1 {
@@ -117,19 +117,27 @@
   border-right: solid 10px black;
   border-top: solid 5px black;
   border-bottom: solid 5px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 5rem;
+  padding-right: 5rem;
  
 }
 
 .LogicDisplay {
-  display: flex;
+ display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   background-color: #dddddd3b;
   padding: 1rem;
-  margin: 0 5rem;
+  margin-left:  5rem;
+  margin-right:  5rem;
+margin-top: 10rem;
   border: solid 1px black;
 }
+
 .ActionContainer {
   width: 20%;
   align-self: start;
@@ -146,6 +154,7 @@
   padding: 1rem;
   border-radius: 1rem;
   background-color: #4370709b;
+  font-size: x-large;
 }
 .BattleMessage {
   flex: 1;
