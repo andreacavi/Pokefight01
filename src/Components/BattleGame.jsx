@@ -42,7 +42,7 @@ const BattleGame = () => {
 
   const handleAttack = () => {
     if (playerTurn && opponentPokemonHPCurrent !== null && userPokemon) {
-      const baseDamage = 20;
+      const baseDamage = 10;
       const damageDealt = Math.max(
         1,
         (userPokemon.base.Attack / opponentPokemon.base.Defense) * baseDamage
@@ -109,8 +109,6 @@ const BattleGame = () => {
   const handleKeepFighting = () => {
     // Increment player score for winning
     setPlayerScore((prevScore) => prevScore + 100); // Increment score after a win
-    // Keep the user's Pokémon and HP as they are if you want the damage to persist
-    // Or reset the user's HP to full for a fresh start: setUserPokemonHPCurrent(userPokemon.base.HP);
 
     // Reset player turn, battle message, and attack status
     setPlayerTurn(true);

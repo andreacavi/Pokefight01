@@ -84,3 +84,33 @@
   font-weight: bold;
   font-size: 1rem;
 }
+
+.tester {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.battleButton {
+  min-width: 20rem;
+  width: fit-content;
+  height: fit-content;
+  font-size: x-large;
+  margin-left: 5rem;
+  text-align: center;
+  padding: 1 rem 2rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 2px solid black;
+  border-radius: 20px;
+  position: absolute;
+  margin-top: 33rem;
+  margin-bottom: 0.3rem;
+  margin-left: 33rem;
+  margin-right: 0;
+  transition: all 0.3s;
+}
+
+.battleButton:hover {
+  background-color: rgba(240, 248, 255, 0.233);
+}

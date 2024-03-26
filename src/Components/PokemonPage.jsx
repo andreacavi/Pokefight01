@@ -76,7 +76,15 @@ export default function PokemonPage() {
               </div>
 
               <div className={styles.PokemonNameContainer}>
-                <h1 className={styles.Pokename}>{onePokemon.name.english}</h1>
+                <div className={styles.tester}>
+                  <h1 className={styles.Pokename}>{onePokemon.name.english}</h1>
+                  <button
+                    className={styles.battleButton}
+                    onClick={handleBattleClick}
+                  >
+                    Take into Battle
+                  </button>
+                </div>
                 <img
                   src={onePokemon.url}
                   alt="Pokemon"
@@ -100,7 +108,6 @@ export default function PokemonPage() {
               <div className={styles.barContainer}>
                 <div className={styles.stats}>
                   {onePokemon.name.english}'s Stats <br />
-                  <button onClick={handleBattleClick}>Take into Battle</button>
                 </div>
                 <div className={styles.textStats}>HP:</div>
                 <ProgressBar
