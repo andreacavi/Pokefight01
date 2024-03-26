@@ -4,6 +4,7 @@ import { PokemonAPIContext } from "../Context/PokemonAPIContext";
 import "./BattleGame.css"; // Ensure this path matches your updated CSS file
 
 const BattleGame = () => {
+  const { userChosenPokemon } = useContext(PokemonAPIContext);
   const { allPokemons, loading } = useContext(PokemonAPIContext);
   const [userPokemon, setUserPokemon] = useState(null);
   const [opponentPokemon, setOpponentPokemon] = useState(null);
@@ -22,6 +23,16 @@ const BattleGame = () => {
       setUserPokemonHPCurrent(userPokemon.base.HP);
     }
   }, [userPokemon]);
+
+  useEffect(() => {
+    if (userChosenPokemon) {
+      setUserPokemon(userChosenPokemon);
+      setUserPokemonHPCurrent(userChosenPokemon.base.HP);
+      const randomIndex = Math.floor(Math.random() * allPokemons.length);
+      setOpponentPokemon(allPokemons[randomIndex]);
+      setOpponentPokemonHPCurrent(allPokemons[randomIndex].base.HP);
+    }
+  }, [userChosenPokemon, allPokemons]);
 
   useEffect(() => {
     if (opponentPokemon) {
@@ -95,15 +106,37 @@ const BattleGame = () => {
     }
   }, [playerTurn, userPokemonHPCurrent, opponentPokemonHPCurrent]);
 
+  const handleKeepFighting = () => {
+    // Increment player score for winning
+    setPlayerScore((prevScore) => prevScore + 100); // Increment score after a win
+    // Keep the user's Pokémon and HP as they are if you want the damage to persist
+    // Or reset the user's HP to full for a fresh start: setUserPokemonHPCurrent(userPokemon.base.HP);
+
+    // Reset player turn, battle message, and attack status
+    setPlayerTurn(true);
+    setBattleMessage("");
+    setIsAttacking(false);
+
+    // Select a new opponent without changing the user's Pokémon
+    const randomIndex = Math.floor(Math.random() * allPokemons.length);
+    setOpponentPokemon(allPokemons[randomIndex]);
+    setOpponentPokemonHPCurrent(allPokons[randomIndex].base.HP);
+  };
+
+  // Then make sure this function is used in the respective win/lose screen render functions
+
   const submitScore = async () => {
     try {
-      const response = await fetch("http://localhost:8080/leaderboard", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ playername: playerName, score: playerScore }),
-      });
+      const response = await fetch(
+        "https://pokenode-56qg.onrender.com/leaderboard",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ playername: playerName, score: playerScore }),
+        }
+      );
       if (!response.ok) {
         throw new Error("Failed to submit score");
       }
@@ -130,15 +163,24 @@ const BattleGame = () => {
   };
 
   useEffect(() => {
-    // Submit the score when the user wins
     if (opponentPokemonHPCurrent <= 0) {
-      setPlayerScore(playerScore + 100); // Increment score and submit it
+      setPlayerScore(playerScore + 100);
     }
   }, [opponentPokemonHPCurrent]);
 
   const renderPokemonSelectMenu = () => (
     <div className="pokemon-menu">
-      <h1>Select Your Pokemon</h1>
+      <div className="pokemon-menuSub">
+        <h1 className="instructionsh1">Select Your Pokemon:</h1>
+        <div className="instructions">
+          <h3>How to Play:</h3>
+          <p className="pmenue">
+            Select your Pokémon and use 'Attack' to weaken your opponent or
+            'Heal' to restore your HP. Win by reducing your opponent's HP to
+            zero!
+          </p>
+        </div>
+      </div>
       <div className="pokemon-list">
         {allPokemons.map((pokemon) => (
           <div
@@ -225,20 +267,19 @@ const BattleGame = () => {
         <img className="endImg" src="/won.png" alt="You Win!" />
         <input
           type="text"
+          className="nameInput" // Apply the class here
           placeholder="Enter your name"
           value={playerName}
           onChange={(e) => setPlayerName(e.target.value)}
         />
-        <button onClick={handleNameSubmit}>Submit Score</button>
         <button
-          className="TryagainButton"
-          onClick={() => {
-            setUserPokemon(null);
-            setOpponentPokemon(null);
-            setBattleMessage("");
-          }}
+          className="submitScoreBtn" // And here
+          onClick={handleNameSubmit}
         >
-          <img className="endImgT" src="/try.png" alt="try again?" />
+          Submit Score
+        </button>
+        <button className="submitScoreBtn" onClick={handleKeepFighting}>
+          Keep fighting
         </button>
       </div>
     );
@@ -248,7 +289,6 @@ const BattleGame = () => {
     const handleNameSubmit = async () => {
       if (playerName.trim() !== "") {
         await submitScore();
-        setPlayerScore(0); // Reset the player's score for lose scenario
       } else {
         alert("Please enter a name.");
       }
@@ -262,19 +302,18 @@ const BattleGame = () => {
         <img className="endImg" src="/lost.png" alt="You Lose!" />
         <input
           type="text"
+          className="nameInput" // Apply the class here
           placeholder="Enter your name"
           value={playerName}
           onChange={(e) => setPlayerName(e.target.value)}
         />
-        <button onClick={handleNameSubmit}>Submit Score</button>
         <button
-          className="TryagainButton"
-          onClick={() => {
-            setUserPokemon(null);
-            setOpponentPokemon(null);
-            setBattleMessage("");
-          }}
+          className="submitScoreBtn" // And here
+          onClick={handleNameSubmit}
         >
+          Submit Score
+        </button>
+        <button className="TryagainButton" onClick={handleKeepFighting}>
           <img className="endImgT" src="/try.png" alt="Try Again?" />
         </button>
       </div>
