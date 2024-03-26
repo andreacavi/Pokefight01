@@ -41,7 +41,7 @@
 
 .HeadingOne {
   font-size: 7rem;
+  font-family: "Kavoon", serif;
   color: #ffcc01;
   -webkit-text-stroke: 2px black;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
